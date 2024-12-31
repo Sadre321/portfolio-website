@@ -21,7 +21,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const apiUri = import.meta.env.VITE_MAILER_URI;
+    const apiUri = import.meta.env.REACT_APP_VITE_MAILER_URI;
     
     try {
       const response = await fetch(`${apiUri}/comments`, {
