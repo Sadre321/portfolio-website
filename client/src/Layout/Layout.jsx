@@ -5,22 +5,15 @@ import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
 
 const Layout = ({ children }) => {
-
-    const particlesInit = useCallback(async (engine) => {
-        console.log(engine);
-        await loadSlim(engine);
-      }, []);
-    
-      const particlesLoaded = useCallback(async (container) => {
-        await console.log(container);
-      }, []);
+  const particlesInit = useCallback(async (engine) => {
+    await loadSlim(engine);
+  }, []);
 
   return (
     <>
       <Particles
         id="tsparticles"
         init={particlesInit}
-        loaded={particlesLoaded}
         options={{
           background: {
             color: {
@@ -93,7 +86,7 @@ const Layout = ({ children }) => {
       />
       <Asidebar />
       <div className="relative flex flex-col justify-center items-center gap-14 scroll-smooth">
-      {children}
+        {children}
       </div>
     </>
   );

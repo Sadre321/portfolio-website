@@ -15,7 +15,7 @@ const Services = () => {
       id: 2,
       title: "Back-End",
       description:
-        "Node.js, Express.js, Python, Django gibi teknolojilerle sunucu tarafı uygulamalar geliştirme. Veritabanı yönetimi (MySQL, MongoDB) ve API geliştirme.",
+        "Node.js, Express.js gibi teknolojilerle sunucu tarafı uygulamalar geliştirme. Veritabanı yönetimi (MySQL, MongoDB) ve API geliştirme.",
       icon: <FaNodeJs className="text-6xl text-green-500" />,
       color: "bg-[#E9EDC9]",
     },
@@ -23,7 +23,7 @@ const Services = () => {
       id: 3,
       title: "Game Development",
       description:
-        "Unity, Unreal Engine gibi oyun motorlarıyla 2D ve 3D oyun geliştirme. C# diliyle tenel oyun mantığı ve grafik optimizasyonu.",
+        "Unity oyun motoruyla 2D ve 3D oyun geliştirme. C# diliyle tenel oyun mantığı ve grafik optimizasyonu.",
       icon: <BsUnity className="text-6xl" />,
       color: "bg-white",
     },

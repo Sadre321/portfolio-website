@@ -123,7 +123,7 @@ const Form = () => {
       <div className="flex justify-start mt-4">
         <button
           type="submit"
-          className="px-6 py-2 bg-[#CCD5AE] text-white font-semibold rounded-2xl hover:bg-[#C1845B]"
+          className="px-6 py-2 bg-[#CCD5AE] text-white font-semibold rounded-2xl hover:bg-[#E9EDC9]"
         >
           Gönder
         </button>

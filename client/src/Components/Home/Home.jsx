@@ -3,16 +3,53 @@ import { IoLogoGoogle } from "react-icons/io";
 import { RiSnapchatLine } from "react-icons/ri";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import ScrollDown from "./ScrollDown/ScrollDown";
+import { useEffect, useState } from "react";
 
 const Home = () => {
-  const textArray = ["Fullstack", "Backend", "Frontend", "Game", ""];
+  const textArray = ["Fullstack Developer", "Backend Developer", "Frontend Developer", "Game Developer", "Developer"];
+
+  const username = import.meta.env.VITE_GITHUB_USERNAME;
+    const token = import.meta.env.VITE_GITHUB_TOKEN;
+    const apiUri = import.meta.env.VITE_GITHUB_URI;
+  
+    const [userData, setUserData] = useState([]);
+  
+    // Sayfa yüklendiğinde verileri çek
+    useEffect(() => {
+      const fetchGithubData = async () => {
+        const userUrl = `${apiUri}/${username}`;
+  
+        try {
+          // Kullanıcı bilgilerini çek
+          const userResponse = await fetch(userUrl, {
+            method: "GET",
+            headers: {
+              Authorization: `token ${token}`, // Token ile kimlik doğrulama
+            },
+          });
+  
+          if (!userResponse.ok) {
+            throw new Error("Kullanıcı verileri alınırken hata oluştu");
+          }
+  
+          const users = await userResponse.json();
+          setUserData(users);
+        } catch (error) {
+          console.error("Hata:", error);
+        }
+      };
+  
+      fetchGithubData();
+    }, [apiUri, username, token]);
 
   return (
     <>
       <div className="py-16 md:py-2 min-h-screen flex flex-col justify-center items-center relative" id="home">
         <div className="flex flex-col items-center gap-8 md:flex-row md:items-center md:justify-center w-full px-4">
           {/* Circle */}
-          <div className="w-48 h-48 md:w-96 md:h-96 bg-white rounded-full shadow-lg mb-6 md:mb-0"></div>
+          <div className="w-48 h-48 md:w-96 md:h-96 bg-white rounded-full shadow-lg mb-6 md:mb-0">
+            <img src={userData.avatar_url} alt="" className="rounded-full" />
+          </div>
 
           {/* Text and Button */}
           <div className="flex flex-col items-center md:items-start space-y-4 text-center md:text-left w-full md:w-auto">
@@ -56,7 +93,7 @@ const Home = () => {
 
         {/* Scroll Down Icon */}
         <div className="absolute bottom-5 z-10 md:w-28 w-20 opacity-55 flex flex-col items-center group">
-          <p className="font-bold group-hover:mb-1 duration-700 md:text-base text-sm">Scroll Down</p>
+          <p className="font-bold group-hover:mb-1 duration-700 md:text-base text-xs">Scroll Down</p>
           <DotLottieReact
             className="group-hover:scale-110 duration-700"
             src="https://lottie.host/a8352cb6-61ee-400c-a38c-e2d88136d559/IOJ3hGhvKn.lottie"

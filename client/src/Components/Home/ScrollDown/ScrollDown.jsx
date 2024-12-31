@@ -20,19 +20,20 @@ const ScrollDown = ({ textArray }) => {
         I`m a{" "}
         <span>
           <motion.span
+            key={textArray[count]} // Yeni bir key her değişimde bileşeni yeniden oluşturur
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
-              delay: 0.5, // Başlangıç gecikmesi
-              duration: 0.5, // Geçiş süresi
-              ease: "easeInOut", // Geçişin yumuşak olması için 'easeInOut' kullanıyoruz
+              delay: 0.5,
+              duration: 0.5,
+              ease: "easeInOut",
             }}
-            className="text-xl"
+            className="text-xl font-semibold"
           >
             {textArray[count]}
           </motion.span>
+
         </span>
-        {" "}Developer
       </h3>
     </div>
   );
