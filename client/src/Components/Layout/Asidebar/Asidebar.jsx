@@ -1,14 +1,14 @@
-import { IoHomeOutline } from "react-icons/io5";
+import { AiOutlineHome } from "react-icons/ai";
 import { RiCloseLargeLine } from "react-icons/ri";
 import { FaRegComment } from "react-icons/fa";
 import { HiBars3BottomLeft } from "react-icons/hi2";
-import { PiCertificateLight } from "react-icons/pi";
+import { PiCertificateBold } from "react-icons/pi";
 import { FaRegUser } from "react-icons/fa";
 import { MdOutlineFolderCopy } from "react-icons/md";
 import { useState } from "react";
 
 const Asidebar = () => {
-  const [icon, setIcon] = useState(<IoHomeOutline />);
+  const [icon, setIcon] = useState(<AiOutlineHome />);
   const [isOpen, setIsOpen] = useState(false);
 
   // Toggle sidebar open/close
@@ -29,9 +29,9 @@ const Asidebar = () => {
   };
 
   const navLinks = [
-    { id: "home", icon: <IoHomeOutline /> },
+    { id: "home", icon: <AiOutlineHome /> },
     { id: "about", icon: <FaRegUser /> },
-    { id: "services", icon: <PiCertificateLight /> },
+    { id: "services", icon: <PiCertificateBold /> },
     { id: "projects", icon: <MdOutlineFolderCopy /> },
     { id: "contact", icon: <FaRegComment /> },
   ];
@@ -43,8 +43,11 @@ const Asidebar = () => {
       }`}
     >
       {/* Hamburger / Close button */}
+      <div className={`fixed transition-all duration-300 md:hidden top-10 border-2 border-gray-500 border-opacity-75 p-1 rounded-full ${
+          isOpen ? "left-32" : "left-10"
+        } z-40`}>
       <div
-        className={`fixed md:hidden top-10 ${isOpen ? "left-32" : "left-10"} z-40 space-y-10 transition-all duration-300 bg-white rounded-full p-3 w-12 h-12 flex justify-center items-center`}
+        className={`space-y-10 bg-white rounded-full p-3 w-12 h-12 flex justify-center items-center`}
       >
         {isOpen ? (
           <RiCloseLargeLine size={32} onClick={handleToggle} />
@@ -52,23 +55,26 @@ const Asidebar = () => {
           <HiBars3BottomLeft size={32} onClick={handleToggle} />
         )}
       </div>
+      </div>
 
       {/* Portfolio Link with current icon */}
-      <a
-        href="#"
-        className="w-12 h-12 bg-white rounded-full flex justify-center items-center text-gray-800 hover:bg-gray-200 transition-all duration-200"
-      >
-        {icon}
-      </a>
+      <div className="border-2 border-gray-500 border-opacity-75 p-1 rounded-full">
+        <a
+          href="#"
+          className="w-12 h-12 bg-white rounded-full flex justify-center items-center text-gray-800 hover:bg-gray-200 transition-all duration-200"
+        >
+          {icon}
+        </a>
+      </div>
 
       {/* Navigation Links */}
       <ul className="space-y-10 flex flex-col items-center justify-center">
         {navLinks.map(({ id, icon }, index) => (
-          <li key={index} className="text-white text-2xl hover:text-gray-400 duration-700 cursor-pointer">
-            <a
-              href={`#${id}`}
-              onClick={(e) => handleSmoothScroll(e, id, icon)}
-            >
+          <li
+            key={index}
+            className="text-2xl text-gray-500 opacity-75 hover:text-gray-200 duration-700 cursor-pointer"
+          >
+            <a href={`#${id}`} onClick={(e) => handleSmoothScroll(e, id, icon)}>
               {icon}
             </a>
           </li>
@@ -77,7 +83,7 @@ const Asidebar = () => {
 
       {/* Rotated Year */}
       <div className="w-full flex justify-center items-center pb-2">
-        <p className="font-semibold text-white transform -rotate-90 whitespace-nowrap opacity-75 text-xs md:text-base">
+        <p className="font-semibold text-gray-500 transform -rotate-90 whitespace-nowrap opacity-75 text-xs md:text-base">
           &copy; 2024 - 2025
         </p>
       </div>

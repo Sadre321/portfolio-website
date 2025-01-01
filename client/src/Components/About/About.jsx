@@ -25,9 +25,9 @@ const About = () => {
     },
   ];
 
-  const username = import.meta.env.REACT_APP_VITE_GITHUB_USERNAME;
-  const token = import.meta.env.REACT_APP_VITE_GITHUB_TOKEN;
-  const apiUri = import.meta.env.REACT_APP_VITE_GITHUB_URI;
+  const username = import.meta.env.VITE_GITHUB_USERNAME;
+  const token = import.meta.env.VITE_GITHUB_TOKEN;
+  const apiUri = import.meta.env.VITE_GITHUB_URI;
 
   const [userData, setUserData] = useState([]);
 
@@ -81,9 +81,13 @@ const About = () => {
             />
           </div>
 
-          <button className="bg-[#CCD5AE] text-white py-2 px-6 rounded-md hover:bg-[#E9EDC9] transition-colors duration-700">
-            Download CV
-          </button>
+          <a
+            href="/public/CV.jpg" // Burada, CV dosyasının gerçek yolu ile değiştirmelisin
+            download="CV.jpg" // Bu özellik, dosyanın indirilmesini sağlar
+            className="bg-[#CCD5AE] text-white py-2 px-6 rounded-md hover:bg-[#E9EDC9] transition-colors duration-700"
+          >
+            CV`yi İndir
+          </a>
         </div>
 
         <div className="flex md:flex-row flex-col items-center justify-center gap-10">

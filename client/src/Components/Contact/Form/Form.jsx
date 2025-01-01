@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const Form = () => {
   const [formData, setFormData] = useState({
-    username: "",
+    username: "", // Burada "name" yerine "username" kullanılıyor
     email: "",
     title: "",
     comment: ""
@@ -21,7 +21,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const apiUri = import.meta.env.REACT_APP_VITE_MAILER_URI;
+    const apiUri = import.meta.env.VITE_MAILER_URI;
     
     try {
       const response = await fetch(`${apiUri}/comments`, {
@@ -38,7 +38,7 @@ const Form = () => {
 
       // Reset form if success
       setFormData({
-        name: "",
+        username: "",
         email: "",
         title: "",
         comment: ""
@@ -61,11 +61,11 @@ const Form = () => {
           </label>
           <input
             id="username"
-            name="username"
+            name="username" // Burada da "username" kullanıyoruz
             type="text"
             placeholder="Adınızı girin"
             className="border py-4 px-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-[#D4A373]"
-            value={formData.name}
+            value={formData.username} // Burada da "username" kullanıyoruz
             onChange={handleInput}
           />
         </div>

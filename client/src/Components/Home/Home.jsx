@@ -1,6 +1,7 @@
 import { FaInstagram } from "react-icons/fa";
 import { IoLogoGoogle } from "react-icons/io";
 import { RiSnapchatLine } from "react-icons/ri";
+import { FaGithub } from "react-icons/fa";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import ScrollDown from "./ScrollDown/ScrollDown";
 import { useEffect, useState } from "react";
@@ -8,9 +9,9 @@ import { useEffect, useState } from "react";
 const Home = () => {
   const textArray = ["Fullstack Developer", "Backend Developer", "Frontend Developer", "Game Developer", "Developer"];
 
-  const username = import.meta.env.REACT_APP_VITE_GITHUB_USERNAME;
-    const token = import.meta.env.REACT_APP_VITE_GITHUB_TOKEN;
-    const apiUri = import.meta.env.REACT_APP_VITE_GITHUB_URI;
+  const username = import.meta.env.VITE_GITHUB_USERNAME;
+    const token = import.meta.env.VITE_GITHUB_TOKEN;
+    const apiUri = import.meta.env.VITE_GITHUB_URI;
   
     const [userData, setUserData] = useState([]);
   
@@ -42,6 +43,8 @@ const Home = () => {
       fetchGithubData();
     }, [apiUri, username, token]);
 
+    console.log(userData);
+
   return (
     <>
       <div className="py-16 md:py-2 min-h-screen flex flex-col justify-center items-center relative" id="home">
@@ -60,13 +63,20 @@ const Home = () => {
             <ScrollDown textArray={textArray} />
 
             {/* Social Media Icons */}
-            <div className="flex gap-6 text-3xl text-gray-600 justify-center md:justify-start mb-4">
+            <div className="flex gap-4 text-3xl text-gray-600 justify-center md:justify-start mb-4">
               <a
-                href="https://www.instagram.com"
+                href="https://www.instagram.com/misirli06/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FaInstagram className="hover:text-pink-500 transition-all duration-200" />
+              </a>
+              <a
+                href={`https://github.com/${userData.login}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaGithub className="hover:text-[#24292F] transition-all duration-200" />
               </a>
               <a
                 href="https://www.google.com"

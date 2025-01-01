@@ -38,11 +38,11 @@ const Timeline = () => {
           {events.map((event, index) => (
             <div
               key={index}
-              className={`flex gap-5 ${index % 2 === 0 ? 'flex-row-reverse border-r-4' : 'flex-row border-l-4'} 
+              className={`flex gap-5 items-center ${index % 2 === 0 ? 'flex-row-reverse border-r-4' : 'flex-row border-l-4'} 
                 border-[#D4A373] bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 ease-in-out`}>
               
               {/* Icon Container */}
-              <div className="w-16 h-16 bg-[#CCD5AE] text-white rounded-full flex items-center justify-center transform transition duration-300 ease-in-out hover:scale-110">
+              <div className="w-16 h-16 px-5 bg-[#CCD5AE] text-white rounded-full flex items-center justify-center transform transition duration-300 ease-in-out hover:scale-110">
                 <PiCertificateLight size={28} />
               </div>
 
