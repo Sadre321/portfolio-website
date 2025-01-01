@@ -3,9 +3,9 @@ import ProjectItems from "./ProjectItems";
 import { RiArrowDownWideLine } from "react-icons/ri";
 
 const Projects = () => {
-  const username = import.meta.env.VITE_GITHUB_USERNAME;
-  const token = import.meta.env.VITE_GITHUB_TOKEN;
-  const apiUri = import.meta.env.VITE_GITHUB_URI;
+  const username = import.meta.env.REACT_VITE_GITHUB_USERNAME;
+  const token = import.meta.env.REACT_VITE_GITHUB_TOKEN;
+  const apiUri = import.meta.env.REACT_VITE_GITHUB_URI;
 
   const [repoData, setRepoData] = useState([]);
   const [sliceValue, setSliceValue] = useState(6);
