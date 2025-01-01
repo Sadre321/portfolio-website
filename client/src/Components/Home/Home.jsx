@@ -9,9 +9,9 @@ import { useEffect, useState } from "react";
 const Home = () => {
   const textArray = ["Fullstack Developer", "Backend Developer", "Frontend Developer", "Game Developer", "Developer"];
 
-  const username = import.meta.env.REACT_VITE_GITHUB_USERNAME;
-    const token = import.meta.env.REACT_VITE_GITHUB_TOKEN;
-    const apiUri = import.meta.env.REACT_VITE_GITHUB_URI;
+  const username = import.meta.env.VITE_GITHUB_USERNAME;
+    const token = import.meta.env.VITE_GITHUB_TOKEN;
+    const apiUri = import.meta.env.VITE_GITHUB_URI;
   
     const [userData, setUserData] = useState([]);
   
