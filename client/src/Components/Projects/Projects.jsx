@@ -38,7 +38,7 @@ const Projects = () => {
       } catch (error) {
         console.error("Error:", error);
       } finally {
-        setLoading(true); // Set loading to false once the data is fetched or an error occurs
+        setLoading(false); // Set loading to false once the data is fetched or an error occurs
       }
     };
 
