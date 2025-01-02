@@ -93,9 +93,9 @@ const Home = () => {
             </div>
 
             {/* Hire me button */}
-            <button className="bg-[#CCD5AE] text-white py-2 px-6 rounded-md hover:bg-[#E9EDC9] transition-colors duration-700">
+            <a href="#contact" className="bg-[#CCD5AE] text-white py-2 px-6 rounded-md hover:bg-[#E9EDC9] transition-colors duration-700">
               Hire me!
-            </button>
+            </a>
           </div>
         </div>
 

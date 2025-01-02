@@ -139,7 +139,7 @@ const Form = () => {
           type="submit"
           className="px-6 py-2 bg-[#CCD5AE] text-white font-semibold rounded-2xl hover:bg-[#E9EDC9]"
         >
-          {loading ? <Loader size={6} fullScreen={false} /> : "Gonder"}
+          {loading ? <Loader width={22} height={22} fullScreen={false} /> : "Gonder"}
         </button>
       </div>
     </form>

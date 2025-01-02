@@ -82,8 +82,8 @@ const About = () => {
           </div>
 
           <a
-            href="/public/CV.jpg" // Burada, CV dosyasının gerçek yolu ile değiştirmelisin
-            download="CV.jpg" // Bu özellik, dosyanın indirilmesini sağlar
+            href="/CV.jpg" // Correct file path
+            download="CV.jpg" // This will make the file downloadable
             className="bg-[#CCD5AE] text-white py-2 px-6 rounded-md hover:bg-[#E9EDC9] transition-colors duration-700"
           >
             CV`yi İndir

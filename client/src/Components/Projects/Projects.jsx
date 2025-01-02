@@ -38,7 +38,7 @@ const Projects = () => {
       } catch (error) {
         console.error("Error:", error);
       } finally {
-        setLoading(false); // Set loading to false once the data is fetched or an error occurs
+        setLoading(true); // Set loading to false once the data is fetched or an error occurs
       }
     };
 
@@ -56,7 +56,7 @@ const Projects = () => {
 
       {/* Show loader if data is still loading */}
       {loading ? (
-        <Loader size={12} fullScreen={false} color="#6b7280"/> // Show loader while fetching data
+        <Loader fullScreen={false} color="#6b7280"/> // Show loader while fetching data
       ) : repoData.length > 0 ? (
         <div className="w-1/2 flex flex-col gap-10 items-center justify-center">
           <ul className="md:space-y-4 flex flex-wrap justify-center items-center md:gap-10 gap-5">
