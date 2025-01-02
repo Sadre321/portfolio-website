@@ -1,15 +1,26 @@
 import PropTypes from "prop-types";
 import Asidebar from "../Components/Layout/Asidebar/Asidebar";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
+import Loader from "../Components/Spinner/Loader";
 
 const Layout = ({ children }) => {
+  const [loading, setLoading] = useState(true);
+
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
   }, []);
 
-  return (
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+  }, []);
+
+  return loading ? (
+    <Loader />
+  ) : (
     <>
       <Particles
         id="tsparticles"

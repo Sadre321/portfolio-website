@@ -1,11 +1,13 @@
 import { useState } from "react";
+import Loader from "../../Spinner/Loader";
 
 const Form = () => {
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     username: "", // Burada "name" yerine "username" kullanılıyor
     email: "",
     title: "",
-    comment: ""
+    comment: "",
   });
 
   // Handle input changes
@@ -13,23 +15,23 @@ const Form = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value
+      [name]: value,
     }));
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const apiUri = import.meta.env.VITE_MAILER_URI;
-    
+
     try {
+      setLoading(true);
+
       const response = await fetch(`${apiUri}/comments`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
       });
 
       if (!response.ok) {
@@ -41,12 +43,15 @@ const Form = () => {
         username: "",
         email: "",
         title: "",
-        comment: ""
+        comment: "",
       });
 
       console.log("Email sent successfully!");
     } catch (error) {
       console.error("Mail gönderme hatası", error);
+    } finally {
+      // Yükleniyor durumu sonlandırılır
+      setLoading(false);
     }
   };
 
@@ -56,7 +61,10 @@ const Form = () => {
       <div className="flex md:flex-row flex-col gap-5">
         {/* Name */}
         <div className="flex flex-col gap-2 w-full sm:w-1/2">
-          <label htmlFor="username" className="font-semibold text-xl text-gray-700">
+          <label
+            htmlFor="username"
+            className="font-semibold text-xl text-gray-700"
+          >
             İsim
           </label>
           <input
@@ -72,7 +80,10 @@ const Form = () => {
 
         {/* Email */}
         <div className="flex flex-col gap-2 w-full sm:w-1/2">
-          <label htmlFor="email" className="font-semibold text-xl text-gray-700">
+          <label
+            htmlFor="email"
+            className="font-semibold text-xl text-gray-700"
+          >
             E-posta
           </label>
           <input
@@ -105,7 +116,10 @@ const Form = () => {
 
       {/* Comment Field */}
       <div className="flex flex-col gap-2">
-        <label htmlFor="comment" className="font-semibold text-xl text-gray-700">
+        <label
+          htmlFor="comment"
+          className="font-semibold text-xl text-gray-700"
+        >
           Yorum
         </label>
         <textarea
@@ -125,7 +139,7 @@ const Form = () => {
           type="submit"
           className="px-6 py-2 bg-[#CCD5AE] text-white font-semibold rounded-2xl hover:bg-[#E9EDC9]"
         >
-          Gönder
+          {loading ? <Loader size={6} fullScreen={false} /> : "Gonder"}
         </button>
       </div>
     </form>

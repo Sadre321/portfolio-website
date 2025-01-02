@@ -43,8 +43,6 @@ const Home = () => {
       fetchGithubData();
     }, [apiUri, username, token]);
 
-    console.log(userData);
-
   return (
     <>
       <div className="py-16 md:py-2 min-h-screen flex flex-col justify-center items-center relative" id="home">

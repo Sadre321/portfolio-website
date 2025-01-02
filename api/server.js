@@ -9,23 +9,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-app.post("/comments", async (req, res) => {
+app.post("/comments", (req, res) => {
     const { email, username, title, comment } = req.body;
-    console.log(req.body);
-
+    
     // E-posta gönderme fonksiyonu
     const transporter = nodemailer.createTransport({
-        service: 'gmail', // Kullanmak istediğiniz e-posta sağlayıcıyı belirtin
+        service: 'gmail', 
         auth: {
-            user: 'haydaremre31@gmail.com', // Kendi e-posta adresinizi girin
-            pass: 'txhy lvpx clvc kxjc', // E-posta şifrenizi girin (güvenlik nedeniyle, şifreyi çevre değişkenleri ile saklamanızı öneririm)
+            user: 'haydaremre31@gmail.com',
+            pass: process.env.EXPRESS_GOOGLE_KEY,
         }
     });
 
     const mailOptions = {
-        from: email, // Gönderen kişi
-        to: 'haydaremre31@gmail.com', // Alıcı e-posta adresi
-        subject: `Yeni Yorum: ${title}`, // E-posta konusu
+        from: email,
+        to: 'haydaremre31@gmail.com',
+        subject: `Yeni Yorum: ${title}`,
         text: `
             Yeni bir yorum aldınız!
 
@@ -33,16 +32,20 @@ app.post("/comments", async (req, res) => {
             E-posta: ${email}
             Başlık: ${title}
             Yorum: ${comment}
-        `, // E-posta içeriği
+        `
     };
 
-    try {
-        await transporter.sendMail(mailOptions); // E-posta gönderme işlemi
-        res.status(200).send("Yorum başarıyla gönderildi ve e-posta gönderildi!");
-    } catch (error) {
-        console.error("E-posta gönderimi başarısız:", error);
-        res.status(500).send("E-posta gönderimi başarısız oldu.");
-    }
+    // E-posta gönderme işlemi asenkron yapılacak
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error("E-posta gönderimi başarısız:", error);
+            return res.status(500).send("E-posta gönderimi başarısız oldu.");
+        }
+        console.log('E-posta gönderildi:', info.response);
+    });
+
+    // Başarılı yanıt hemen gönderilebilir
+    res.status(200).send("Yorum başarıyla gönderildi ve e-posta gönderiliyor!");
 });
 
 app.listen(3000, () => {
