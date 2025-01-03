@@ -8,7 +8,7 @@ const Projects = () => {
   const token = import.meta.env.VITE_GITHUB_TOKEN;
   const apiUri = import.meta.env.VITE_GITHUB_URI;
 
-  const [repoData, setRepoData] = useState([]);
+  const [repoData, setRepoData] = useState([]);  
   const [loading, setLoading] = useState(true); // Initially set to true, indicating loading state
   const [sliceValue, setSliceValue] = useState(6);
 
@@ -58,8 +58,8 @@ const Projects = () => {
       {loading ? (
         <Loader fullScreen={false} color="#6b7280"/> // Show loader while fetching data
       ) : repoData.length > 0 ? (
-        <div className="w-1/2 flex flex-col gap-10 items-center justify-center">
-          <ul className="md:space-y-4 flex flex-wrap justify-center items-center md:gap-10 gap-5">
+        <div className="flex flex-col gap-10 items-center justify-center">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
             {repoData.slice(0, sliceValue).map((repo) => (
               <ProjectItems key={repo.id} repo={repo} />
             ))}

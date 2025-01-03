@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const ProjectItems = ({ repo }) => {
   return (
-    <li className="p-6 border-l-4 border-[#D4A373] rounded-lg shadow-md hover:shadow-xl transition-all duration-300 w-full sm:w-64 md:w-80 lg:w-96 min-h-[256px] bg-white flex flex-col justify-between">
+    <li className="p-6 border-l-4 border-[#D4A373] rounded-lg shadow-md hover:shadow-xl transition-all duration-300 w-full sm:w-64 md:w-80 lg:w-96 min-h-[180px] bg-white flex flex-col justify-between">
       {/* Repo Başlığı ve Tarih */}
       <div className="flex md:flex-row md:gap-0 gap-2 flex-col justify-between items-start mb-4">
         <h3 className="text-medium text-blue-600 hover:text-blue-800">
