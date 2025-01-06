@@ -1,6 +1,11 @@
-import PropTypes from "prop-types";
+interface LoaderProps {
+  height?: number;    // Yükseklik tipi (örneğin, '100px')
+  width?: number;     // Genişlik tipi (örneğin, '100px')
+  fullScreen?: boolean; // Opsiyonel tam ekran modu
+  color?: string;        // Opsiyonel renk
+}
 
-const Loader = ({
+const Loader:React.FC<LoaderProps> = ({
   height = 64,
   width = 64,
   fullScreen = true,
@@ -22,13 +27,6 @@ const Loader = ({
       ></div>
     </div>
   );
-};
-
-Loader.propTypes = {
-  width: PropTypes.number,
-  height: PropTypes.number,
-  fullScreen: PropTypes.bool,
-  color: PropTypes.string,
 };
 
 export default Loader;

@@ -6,8 +6,21 @@ import { AiOutlineLike } from "react-icons/ai";
 import Timeline from "./Timeline/Timeline";
 import { useEffect, useState } from "react";
 
-const About = () => {
-  const experienceList = [
+// Kullanıcı verileri için interface
+interface UserData {
+  name: string;
+  avatar_url: string;
+}
+
+// Deneyim öğeleri için interface
+interface Experience {
+  name: string;
+  value: number;
+  color: string;
+}
+
+const About: React.FC = () => {
+  const experienceList: Experience[] = [
     {
       name: "Front-End",
       value: 75,
@@ -25,11 +38,11 @@ const About = () => {
     },
   ];
 
-  const username = import.meta.env.VITE_GITHUB_USERNAME;
-  const token = import.meta.env.VITE_GITHUB_TOKEN;
-  const apiUri = import.meta.env.VITE_GITHUB_URI;
+  const username = import.meta.env.VITE_GITHUB_USERNAME as string;
+  const token = import.meta.env.VITE_GITHUB_TOKEN as string;
+  const apiUri = import.meta.env.VITE_GITHUB_URI as string;
 
-  const [userData, setUserData] = useState([]);
+  const [userData, setUserData] = useState<UserData | null>(null); // userData null olabileceği için null tipini de ekliyoruz
 
   // Sayfa yüklendiğinde verileri çek
   useEffect(() => {
@@ -60,10 +73,7 @@ const About = () => {
   }, [apiUri, username, token]);
 
   return (
-    <div
-      className="py-20 {/*h-screen*/} flex flex-col items-center gap-16"
-      id="about"
-    >
+    <div className="py-20 flex flex-col items-center gap-16" id="about">
       {/* Başlık */}
       <h1 className="font-bold md:text-3xl text-xl text-gray-800 md:mb-5 text-center md:text-left w-full">
         Benim Hakkımda
@@ -73,13 +83,17 @@ const About = () => {
       <div className="flex flex-col md:flex-row justify-center items-center gap-10 p-6 rounded-3xl bg-white shadow-xl">
         {/* Profil Resmi ve Buton */}
         <div className="flex flex-col items-center justify-center md:items-start gap-6">
-          <div className="w-48 h-48 rounded-full overflow-hidden shadow-lg">
-            <img
-              src={userData.avatar_url} // Profil resmini buraya ekleyebilirsiniz
-              alt={userData.name} // Profil adı buraya eklenebilir
-              className="w-full h-full object-cover"
-            />
-          </div>
+          {userData ? (
+            <div className="w-48 h-48 rounded-full overflow-hidden shadow-lg">
+              <img
+                src={userData.avatar_url} // Profil resmini buraya ekleyebilirsiniz
+                alt={userData.name} // Profil adı buraya eklenebilir
+                className="w-full h-full object-cover"
+              />
+            </div>
+          ) : (
+            <div className="w-48 h-48 rounded-full overflow-hidden shadow-lg bg-gray-300" />
+          )}
 
           <a
             href="/CV.jpg" // Correct file path
@@ -108,6 +122,7 @@ const About = () => {
           </div>
         </div>
       </div>
+
       <div className="flex md:flex-row flex-col justify-center items-center gap-12">
         {/* İlk Proje Tamamlandı */}
         <div className="flex md:flex-row flex-col items-center">

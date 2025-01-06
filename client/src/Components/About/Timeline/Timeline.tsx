@@ -1,7 +1,13 @@
 import { PiCertificateLight } from "react-icons/pi";
 
+interface eventArray {
+  year:string,
+  title:string,
+  description:string
+}
+
 const Timeline = () => {
-  const events = [
+  const events:eventArray[] = [
     {
       year: "2022",
       title: "Lise Eğitimini Tamamlama",

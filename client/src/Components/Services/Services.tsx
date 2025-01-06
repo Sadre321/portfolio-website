@@ -1,8 +1,18 @@
 import { FaReact, FaNodeJs } from "react-icons/fa"; // Örnek ikonlar
 import { BsUnity } from "react-icons/bs";
 
+// ServiceData interface'ini düzgün bir şekilde tanımlıyoruz
+interface ServiceData {
+  id: number;
+  title: string;
+  description: string;
+  icon: JSX.Element; // JSX.Element, React bileşenlerini tip olarak kabul eder
+  color: string;
+}
+
 const Services = () => {
-  const serviceData = [
+  // serviceData dizisini ServiceData[] tipinde tanımlıyoruz
+  const serviceData: ServiceData[] = [
     {
       id: 1,
       title: "Front-End",
@@ -23,7 +33,7 @@ const Services = () => {
       id: 3,
       title: "Game Development",
       description:
-        "Unity oyun motoruyla 2D ve 3D oyun geliştirme. C# diliyle tenel oyun mantığı ve grafik optimizasyonu.",
+        "Unity oyun motoruyla 2D ve 3D oyun geliştirme. C# diliyle temel oyun mantığı ve grafik optimizasyonu.",
       icon: <BsUnity className="text-6xl" />,
       color: "bg-white",
     },
@@ -48,7 +58,6 @@ const Services = () => {
           </div>
         ))}
       </div>
-      
     </div>
   );
 };

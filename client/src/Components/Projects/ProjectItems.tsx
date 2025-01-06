@@ -1,6 +1,14 @@
-import PropTypes from "prop-types";
+interface Repo {
+  id: number;
+  name: string;
+  updated_at: Date;
+  description: string;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+}
 
-const ProjectItems = ({ repo }) => {
+const ProjectItems:React.FC<{repo:Repo}> = ({ repo }) => {
   return (
     <li className="p-6 border-l-4 border-[#D4A373] rounded-lg shadow-md hover:shadow-xl transition-all duration-300 w-full sm:w-64 md:w-80 lg:w-96 min-h-[180px] bg-white flex flex-col justify-between">
       {/* Repo Başlığı ve Tarih */}
@@ -67,7 +75,3 @@ const ProjectItems = ({ repo }) => {
 };
 
 export default ProjectItems;
-
-ProjectItems.propTypes = {
-  repo: PropTypes.object.isRequired,
-};

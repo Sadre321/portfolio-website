@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "esnext",                      // ES6+ hedefi
+    "useDefineForClassFields": true,          // Sınıf alanları için define kullanımı
+    "lib": ["dom", "dom.iterable", "esnext"], // Kullanılacak kütüphaneler
+    "allowJs": true,                         // JavaScript dosyalarını da kullanma izni
+    "skipLibCheck": true,                    // Kütüphaneler için tip kontrolünü atla
+    "esModuleInterop": true,                 // ES6 modülleriyle uyumluluk
+    "allowSyntheticDefaultImports": true,     // Varsayılan import'lar için uyumluluk
+    "strict": true,                          // Tüm sıkı tip denetimlerini aktif et
+    "forceConsistentCasingInFileNames": true, // Dosya isimlerinde tutarlılık
+    "module": "esnext",                      // Modül sistemi olarak esnext kullan
+    "moduleResolution": "node",              // Node.js modül çözümleme algoritması
+    "resolveJsonModule": true,               // JSON dosyalarını modül olarak çözümle
+    "isolatedModules": true,                 // Her dosyayı izole modüller olarak ele al
+    "jsx": "react-jsx"                       // React 17 ve sonrası için JSX dönüşümü
+  },
+  "include": [
+    "src"                                     // Kaynak kodları dahil et
+  ],
+  "exclude": [
+    "node_modules"                            // node_modules dışında tut
+  ]
+}

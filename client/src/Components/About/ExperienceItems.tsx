@@ -1,6 +1,10 @@
-import PropTypes from "prop-types";
+interface Experience {
+  name:string,
+  value:number,
+  color:string
+}
 
-const ExperienceItems = ({ experience }) => {
+const ExperienceItems:React.FC<{experience:Experience}> = ({ experience }) => {
   return (
     <div>
       <label
@@ -34,6 +38,3 @@ const ExperienceItems = ({ experience }) => {
 };
 
 export default ExperienceItems;
-ExperienceItems.propTypes = {
-  experience: PropTypes.object,
-};

@@ -1,14 +1,18 @@
-import PropTypes from "prop-types";
+import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import Asidebar from "../Components/Layout/Asidebar/Asidebar";
-import { useCallback, useEffect, useState } from "react";
 import Particles from "react-particles";
 import { loadSlim } from "tsparticles-slim";
 import Loader from "../Components/Spinner/Loader";
+import { Engine } from "tsparticles-engine";  // Ensure you have this import
+// Define the props interface for Layout component
+interface LayoutProps {
+  children: ReactNode;
+}
 
-const Layout = ({ children }) => {
-  const [loading, setLoading] = useState(true);
+const Layout: React.FC<LayoutProps> = ({ children }) => {
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const particlesInit = useCallback(async (engine) => {
+  const particlesInit = useCallback(async (engine: Engine) => {
     await loadSlim(engine);
   }, []);
 
@@ -100,6 +104,3 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
-Layout.propTypes = {
-  children: PropTypes.node,
-};

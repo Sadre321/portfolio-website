@@ -3,14 +3,24 @@ import ProjectItems from "./ProjectItems";
 import { RiArrowDownWideLine } from "react-icons/ri";
 import Loader from "../Spinner/Loader"; // Assuming you have a Loader component
 
-const Projects = () => {
-  const username = import.meta.env.VITE_GITHUB_USERNAME;
-  const token = import.meta.env.VITE_GITHUB_TOKEN;
-  const apiUri = import.meta.env.VITE_GITHUB_URI;
+interface Repo {
+  id: number;
+  name: string;
+  updated_at: Date;
+  description: string;
+  html_url: string;
+  stargazers_count: number;
+  forks_count: number;
+}
 
-  const [repoData, setRepoData] = useState([]);  
-  const [loading, setLoading] = useState(true); // Initially set to true, indicating loading state
-  const [sliceValue, setSliceValue] = useState(6);
+const Projects = () => {
+  const username = import.meta.env.VITE_GITHUB_USERNAME as string;
+  const token = import.meta.env.VITE_GITHUB_TOKEN as string;
+  const apiUri = import.meta.env.VITE_GITHUB_URI as string;
+
+  const [repoData, setRepoData] = useState<Repo[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(true); // Initially set to true, indicating loading state
+  const [sliceValue, setSliceValue] = useState<number>(6);
 
   const handleSlice = () => {
     setSliceValue(sliceValue + 3);
@@ -56,12 +66,12 @@ const Projects = () => {
 
       {/* Show loader if data is still loading */}
       {loading ? (
-        <Loader fullScreen={false} color="#6b7280"/> // Show loader while fetching data
-      ) : repoData.length > 0 ? (
+        <Loader fullScreen={false} color="#6b7280" /> // Show loader while fetching data
+      ) : repoData && repoData.length > 0 ? (
         <div className="flex flex-col gap-10 items-center justify-center">
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-10">
-            {repoData.slice(0, sliceValue).map((repo) => (
-              <ProjectItems key={repo.id} repo={repo} />
+            {repoData.slice(0, sliceValue).map((repo,index) => (
+              <ProjectItems key={index} repo={repo} />
             ))}
           </ul>
 

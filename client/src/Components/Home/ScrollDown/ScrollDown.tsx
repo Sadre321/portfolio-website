@@ -1,9 +1,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import PropTypes from "prop-types";
 
-const ScrollDown = ({ textArray }) => {
-  const [count, setCount] = useState(0); // Başlangıç değeri 0
+interface ScrollDownProps  {
+  textArray: string[];
+}
+
+const ScrollDown: React.FC<ScrollDownProps > = ({ textArray }) => {
+  const [count, setCount] = useState<number>(0); // Başlangıç değeri 0
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -32,15 +35,10 @@ const ScrollDown = ({ textArray }) => {
           >
             {textArray[count]}
           </motion.span>
-
         </span>
       </h3>
     </div>
   );
-};
-
-ScrollDown.propTypes = {
-  textArray: PropTypes.arrayOf(PropTypes.string).isRequired, // textArray'in bir dizi string olduğunu belirtiyoruz
 };
 
 export default ScrollDown;

@@ -7,15 +7,26 @@ import { FaRegUser } from "react-icons/fa";
 import { MdOutlineFolderCopy } from "react-icons/md";
 import { useState } from "react";
 
-const Asidebar = () => {
-  const [icon, setIcon] = useState(<AiOutlineHome />);
-  const [isOpen, setIsOpen] = useState(false);
+// Define types for the navLinks array items
+interface NavLink {
+  id: string;
+  icon: JSX.Element;
+}
+
+const Asidebar: React.FC = () => {
+  // State types
+  const [icon, setIcon] = useState<JSX.Element>(<AiOutlineHome />);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   // Toggle sidebar open/close
   const handleToggle = () => setIsOpen(!isOpen);
 
   // Smooth scroll and set active icon
-  const handleSmoothScroll = (e, targetId, iconComponent) => {
+  const handleSmoothScroll = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+    targetId: string,
+    iconComponent: JSX.Element
+  ) => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     setIcon(iconComponent);
@@ -28,7 +39,8 @@ const Asidebar = () => {
     }
   };
 
-  const navLinks = [
+  // Navigation links data
+  const navLinks: NavLink[] = [
     { id: "home", icon: <AiOutlineHome /> },
     { id: "about", icon: <FaRegUser /> },
     { id: "services", icon: <PiCertificateBold /> },
@@ -43,18 +55,20 @@ const Asidebar = () => {
       }`}
     >
       {/* Hamburger / Close button */}
-      <div className={`fixed transition-all duration-300 md:hidden top-10 border-2 border-gray-500 border-opacity-75 p-1 rounded-full ${
-          isOpen ? "left-32" : "left-10"
-        } z-40`}>
       <div
-        className={`space-y-10 bg-white rounded-full p-3 w-12 h-12 flex justify-center items-center`}
+        className={`fixed transition-all duration-300 md:hidden top-10 border-2 border-gray-500 border-opacity-75 p-1 rounded-full ${
+          isOpen ? "left-32" : "left-10"
+        } z-40`}
       >
-        {isOpen ? (
-          <RiCloseLargeLine size={32} onClick={handleToggle} />
-        ) : (
-          <HiBars3BottomLeft size={32} onClick={handleToggle} />
-        )}
-      </div>
+        <div
+          className={`space-y-10 bg-white rounded-full p-3 w-12 h-12 flex justify-center items-center`}
+        >
+          {isOpen ? (
+            <RiCloseLargeLine size={32} onClick={handleToggle} />
+          ) : (
+            <HiBars3BottomLeft size={32} onClick={handleToggle} />
+          )}
+        </div>
       </div>
 
       {/* Portfolio Link with current icon */}
