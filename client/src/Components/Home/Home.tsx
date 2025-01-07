@@ -1,6 +1,4 @@
 import { FaInstagram } from "react-icons/fa";
-import { IoLogoGoogle } from "react-icons/io";
-import { RiSnapchatLine } from "react-icons/ri";
 import { FaGithub } from "react-icons/fa";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import ScrollDown from "./ScrollDown/ScrollDown";
@@ -86,20 +84,7 @@ const Home = () => {
             >
               <FaGithub className="hover:text-[#24292F] transition-all duration-200" />
             </a>
-            <a
-              href="https://www.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IoLogoGoogle className="hover:text-blue-500 transition-all duration-200" />
-            </a>
-            <a
-              href="https://www.snapchat.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <RiSnapchatLine className="hover:text-yellow-500 transition-all duration-200" />
-            </a>
+          
           </div>
 
           {/* Hire me button */}
